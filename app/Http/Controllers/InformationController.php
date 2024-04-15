@@ -14,7 +14,9 @@ class InformationController extends Controller
      */
     public function index()
     {
-        return view('admin.information.list');
+        $information = Information::oldest('id')->first();
+
+        return view('admin.information.list', compact('information'));
     }
 
     /**
@@ -34,12 +36,12 @@ class InformationController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'photo' => 'required|image',
+            // 'photo' => 'required|image',
             'age' => 'required|integer|min:0',
             'nationality' => 'required|string|max:255',
             'address' => 'required|string',
             'phone' => 'required|string|max:20',
-            'email' => 'required|string|email|max:255|unique:informations',
+            'email' => 'required|string|email|max:255|unique:information',
             'skype' => 'string|max:255',
             'whatsapp' => 'string|max:255',
             'linkedin' => 'string|max:255',
@@ -64,24 +66,24 @@ class InformationController extends Controller
             'linkedin' => $request->linkedin,
             'facebook' => $request->facebook,
             'is_freelancer' => $request->is_freelancer,
-            'language' => json_encode($request->language),
+            'languages' => json_encode($request->language),
             'project' => $request->project,
             'customer' => $request->customer,
             'description' => $request->description
         ];
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time(). '.' . $extension;
-
-            ///image resize
-            $manager = new ImageManager(new Driver());
-            $photo = $manager->read($file);
-            $photo->resize(600, 360)->save(public_path('admin/assets/photo/'. $filename));
-
-            $data['photo'] = $filename;
-        }
+        // if ($request->hasFile('photo')) {
+        //     $file = $request->file('photo');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time(). '.' . $extension;
+        //
+        //     ///image resize
+        //     $manager = new ImageManager(new Driver());
+        //     $photo = $manager->read($file);
+        //     $photo->resize(600, 360)->save(public_path('admin/assets/photo/'. $filename));
+        //
+        //     $data['photo'] = $filename;
+        // }
 
         Information::create($data);
 
@@ -104,7 +106,9 @@ class InformationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $information = Information::findOrFail($id);
+
+        return view('admin.information.edit', compact('information'));
     }
 
     /**
@@ -120,6 +124,12 @@ class InformationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $information = Information::findOrFail($id);
+
+        $information->delete();
+
+        $notify = ['message' => 'Information successfully delete', 'alert-type' => 'error'];
+
+        return redirect()->back()->with($notify);
     }
 }

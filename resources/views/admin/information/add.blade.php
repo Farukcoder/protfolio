@@ -13,17 +13,6 @@
         <div class="container-fluid">
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <!-- /.card-header -->
                 <div class="card-body">
                     <form action="{{ route('information.store') }}" method="post" enctype="multipart/form-data">
@@ -40,9 +29,12 @@
                             <div class="col-md-12">
                                 <div class="input-group mt-2 d-flex justify-content-center">
                                     <div class="custom-file col-md-3">
-                                        <input type="file" required class="custom-file-input" id="photo" name="photo">
+                                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
+                                    @error('photo')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -51,15 +43,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" required class="form-control" name="first_name" id="first_name" placeholder="First Name">
+                                    <input type="text" required class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="first_name" placeholder="First Name">
                                 </div>
+                                @error('first_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" required class="form-control" name="last_name" id="last_name" placeholder="Last Name">
+                                    <input type="text" required class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="last_name" placeholder="Last Name">
                                 </div>
+                                @error('last_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -67,15 +65,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Age</label>
-                                    <input type="number" required class="form-control" name="age" id="age" placeholder="00">
+                                    <input type="number" required class="form-control @error('age') is-invalid @enderror" name="age" id="age" placeholder="00">
                                 </div>
+                                @error('age')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nationality</label>
-                                    <input type="text" required class="form-control" name="nationality" id="nationality" placeholder="Nationality">
+                                    <input type="text" required class="form-control @error('nationality') is-invalid @enderror" name="nationality" id="nationality" placeholder="Nationality">
                                 </div>
+                                @error('nationality')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -83,15 +87,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input type="text" required class="form-control" name="phone" id="phone" placeholder="01888888888">
+                                    <input type="text" required class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="01888888888">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" required class="form-control" name="email" id="email" placeholder="test@gmail.com">
+                                    <input type="email" required class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="test@gmail.com">
                                 </div>
+                                @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -99,15 +106,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Skype</label>
-                                    <input type="text" required class="form-control" name="skype" id="skype" placeholder="skype url">
+                                    <input type="text" required class="form-control @error('skype') is-invalid @enderror" name="skype" id="skype" placeholder="skype url">
                                 </div>
+                                @error('skype')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Whatsapp</label>
-                                    <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="Whatsapp url">
+                                    <input type="text" class="form-control @error('whatsapp') is-invalid @enderror" name="whatsapp" id="whatsapp" placeholder="Whatsapp url">
                                 </div>
+                                @error('whatsapp')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -115,15 +128,21 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Linkedin</label>
-                                    <input type="text" required class="form-control" name="linkedin" id="linkedin" placeholder="Linkedin Url">
+                                    <input type="text" required class="form-control @error('linkedin') is-invalid @enderror" name="linkedin" id="linkedin" placeholder="Linkedin Url">
                                 </div>
+                                @error('linkedin')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Facebook</label>
-                                    <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook url">
+                                    <input type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" id="facebook" placeholder="Facebook url">
                                 </div>
+                                @error('facebook')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -132,7 +151,7 @@
                                 <div class="form-group">
                                     <label>Language</label>
                                     <div class="select2-purple">
-                                        <select class="select2" required multiple="multiple" data-placeholder="Select language" data-dropdown-css-class="select2-purple" name="language[]" id="language" style="width: 100%;">
+                                        <select class="select2 @error('language') is-invalid @enderror" required multiple="multiple" data-placeholder="Select language" data-dropdown-css-class="select2-purple" name="language[]" id="language" style="width: 100%;">
                                             <option value="Bengali">Bengali</option>
                                             <option value="English">English</option>
                                             <option value="Hindi">Hindi</option>
@@ -141,14 +160,20 @@
                                             <option value="Japanese">Japanese</option>
                                         </select>
                                     </div>
+                                    @error('language')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Project</label>
-                                    <input type="number" required class="form-control" name="project" id="project" placeholder="00">
+                                    <input type="number" required class="form-control @error('project') is-invalid @enderror" name="project" id="project" placeholder="00">
                                 </div>
+                                @error('project')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -156,23 +181,32 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Customer</label>
-                                    <input type="number" required class="form-control" name="customer" id="customer" placeholder="00">
+                                    <input type="number" required class="form-control @error('customer') is-invalid @enderror" name="customer" id="customer" placeholder="00">
                                 </div>
+                                @error('customer')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <textarea class="form-control" required name="address" id="address" rows="3" placeholder="Enter address"></textarea>
+                                    <textarea class="form-control @error('address') is-invalid @enderror" required name="address" id="address" rows="3" placeholder="Enter address"></textarea>
                                 </div>
+                                @error('address')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea id="summernote" required name="description"></textarea>
+                                    <textarea id="summernote" class="form-control @error('description') is-invalid @enderror" required name="description"></textarea>
                                 </div>
+                                @error('description')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
