@@ -32,7 +32,10 @@
                             <div class="col-md-12">
                                 <div class="input-group mt-2 d-flex justify-content-center">
                                     <div class="custom-file col-md-3">
-                                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ $information->photo }}">
+                                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo">
+
+                                        <input type="hidden" id="old_photo" name="old_photo" value="{{ $information->photo }}">
+
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                     @error('photo')

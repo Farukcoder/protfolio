@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Drivers\Gd\Driver;
 
 class InformationController extends Controller
@@ -116,7 +117,72 @@ class InformationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $information = Information::findOrFail($id);
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'photo' => 'required|image',
+            'age' => 'required|integer|min:0',
+            'nationality' => 'required|string|max:255',
+            'address' => 'required|string',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|string|email|unique:information,email,'. $information->id .'|max:255',
+            'skype' => 'string|max:255',
+            'whatsapp' => 'string|max:255',
+            'linkedin' => 'string|max:255',
+            'facebook' => 'string|max:255',
+            'is_freelancer' => 'boolean',
+            'language' => 'required',
+            'project' => 'integer|min:0',
+            'customer' => 'integer|min:0',
+            'description' => 'required|string',
+        ]);
+
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'age' => $request->age,
+            'nationality' => $request->nationality,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'skype' => $request->skype,
+            'whatsapp' => $request->whatsapp,
+            'linkedin' => $request->linkedin,
+            'facebook' => $request->facebook,
+            'is_freelancer' => $request->is_freelancer,
+            'languages' => json_encode($request->language),
+            'project' => $request->project,
+            'customer' => $request->customer,
+            'description' => $request->description
+        ];
+
+        if ($request->hasFile('photo')) {
+
+            if($request->old_photo) {
+                File::delete(public_path('admin/assets/photo/' . $request->old_photo));
+            }
+
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). '.' . $extension;
+
+            ///image resize
+            $manager = new ImageManager(new Driver());
+            $photo = $manager->read($file);
+            $photo->resize(600, 360)->save(public_path('admin/assets/photo/'. $filename));
+
+            $data['photo'] = $filename;
+        }
+
+        Information::where('id', $id)->update($data);
+
+        $notify = ['message'=> 'Information Update Successfully', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
+
     }
 
     /**
