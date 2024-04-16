@@ -23,7 +23,8 @@
                             <div class="col-md-12">
                                 <div class="form-group d-flex justify-content-center">
                                     <div class="text-center col-md-6">
-                                        <img class="profile-user-img img-fluid" src="{{ asset('admin/assets/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
+                                        <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets' . ($information->photo ? '/photo/' . $information->photo : '/dist/img/user4-128x128.jpg')) }}" alt="User profile picture">
+
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +32,7 @@
                             <div class="col-md-12">
                                 <div class="input-group mt-2 d-flex justify-content-center">
                                     <div class="custom-file col-md-3">
-                                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo">
+                                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ $information->photo }}">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                     @error('photo')
@@ -153,13 +154,16 @@
                                 <div class="form-group">
                                     <label>Language</label>
                                     <div class="select2-purple">
+                                        @php
+                                            $language = json_decode($information->languages);
+                                        @endphp
                                         <select class="select2 @error('language') is-invalid @enderror" required multiple="multiple" data-placeholder="Select language" data-dropdown-css-class="select2-purple" name="language[]" id="language" style="width: 100%;">
-                                            <option value="Bengali">Bengali</option>
-                                            <option value="English">English</option>
-                                            <option value="Hindi">Hindi</option>
-                                            <option value="French">French</option>
-                                            <option value="Russian">Russian</option>
-                                            <option value="Japanese">Japanese</option>
+                                            <option value="Bengali" <?php echo in_array('Bengali', $language) ? 'selected' : ''; ?>>Bengali</option>
+                                            <option value="English" <?php echo in_array('English', $language) ? 'selected' : ''; ?>>English</option>
+                                            <option value="Hindi" <?php echo in_array('Hindi', $language) ? 'selected' : ''; ?>>Hindi</option>
+                                            <option value="French" <?php echo in_array('French', $language) ? 'selected' : ''; ?>>French</option>
+                                            <option value="Russian" <?php echo in_array('Russian', $language) ? 'selected' : ''; ?>>Russian</option>
+                                            <option value="Japanese" <?php echo in_array('Japanese', $language) ? 'selected' : ''; ?>>Japanese</option>
                                         </select>
                                     </div>
                                     @error('language')
@@ -227,4 +231,22 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+
+@section('add_js')
+    <script>
+        $(document).ready(function() {
+            $('#photo').on('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#preview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+    </script>
 @endsection

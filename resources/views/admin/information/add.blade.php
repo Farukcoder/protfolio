@@ -21,7 +21,7 @@
                             <div class="col-md-12">
                                 <div class="form-group d-flex justify-content-center">
                                     <div class="text-center col-md-6">
-                                        <img class="profile-user-img img-fluid" src="{{ asset('admin/assets/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
+                                        <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
                                     </div>
                                 </div>
                             </div>
@@ -225,4 +225,22 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+
+@section('add_js')
+    <script>
+        $(document).ready(function() {
+            $('#photo').on('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#preview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+    </script>
 @endsection

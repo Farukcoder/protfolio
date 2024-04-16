@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('add_css_link')
+@section('add_css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -37,41 +37,50 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Language</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>@php $sl = 0; @endphp {{ ++$sl }}</td>
-                                        <td>{{ $information->first_name .' '. $information->last_name }}</td>
-                                        <td>{{ $information->age }}</td>
-                                        <td>{{ $information->nationality }}</td>
-                                        <td>{{ $information->address }}</td>
-                                        <td>{{ $information->phone }}</td>
-                                        <td>{{ $information->email }}</td>
-                                        <td>
-                                            @php
-                                                $languages = json_decode($information->languages);
-                                            @endphp
-                                            @foreach($languages as $language)
-                                                {{ $language }}
-                                            @endforeach
-                                        </td>
-                                        <td class="project-actions">
-                                            <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-red btn-sm">
-                                                <form action="{{ route('information.destroy', $information->id) }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
-                                                </form>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($informations as $sl => $information)
+                                        <tr>
+                                            <td>{{ ++$sl }}</td>
+                                            <td>{{ $information->first_name .' '. $information->last_name }}</td>
+                                            <td>{{ $information->age }}</td>
+                                            <td>{{ $information->nationality }}</td>
+                                            <td>{{ $information->address }}</td>
+                                            <td>{{ $information->phone }}</td>
+                                            <td>{{ $information->email }}</td>
+                                            <td>
+                                                @php
+                                                    $languages = json_decode($information->languages);
+                                                @endphp
+                                                @foreach($languages as $language)
+                                                    {{ $language }}
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @php
+                                                    echo $information->is_active == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
+                                                @endphp
+                                            </td>
+
+                                            <td class="project-actions">
+                                                <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-red btn-sm">
+                                                    <form action="{{ route('information.destroy', $information->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                                                    </form>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -87,7 +96,7 @@
     </section>
 @endsection
 
-@section('add_js_link')
+@section('add_js')
     <!-- DataTables  & Plugins -->
     <script src="{{asset('admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>

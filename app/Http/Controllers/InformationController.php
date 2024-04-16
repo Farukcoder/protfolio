@@ -14,9 +14,9 @@ class InformationController extends Controller
      */
     public function index()
     {
-        $information = Information::oldest('id')->first();
+        $informations = Information::orderby('id', 'desc')->get();
 
-        return view('admin.information.list', compact('information'));
+        return view('admin.information.list', compact('informations'));
     }
 
     /**
