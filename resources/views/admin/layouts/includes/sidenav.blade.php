@@ -56,6 +56,31 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item @if($page == 'Information Add' || $page == 'Information List') menu-open @endif">
+                    <a href="#" class="nav-link @if($page == 'Information Add' || $page == 'Information List') active @endif">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Skills & Educations
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('information.create') }}" class="nav-link @if($page == 'Information Add') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('information.index') }}" class="nav-link @if($page == 'Information List') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-header">EXAMPLES</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

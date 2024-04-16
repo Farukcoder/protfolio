@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function home()
     {
-        return view('admin.dashboard');
+        $information_count = Information::count();
+
+        return view('admin.dashboard', compact('information_count'));
     }
 }
