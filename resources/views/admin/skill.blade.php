@@ -22,9 +22,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with default features</h3>
                             <div class="text-right mb-3">
-                                <a href="#" class="btn btn-sm btn-primary"> <i class="fas fa-plus"></i> Add skill</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                    <i class="fas fa-plus"></i> Add skill
+                                  </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -36,8 +37,6 @@
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Nationality</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -76,6 +75,49 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Skill Model</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="quickForm">
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Skill Gainer</label>
+                            <select class="form-control">
+                              <option>Select Skill Gainer</option>
+                              <option>option 2</option>
+                              <option>option 3</option>
+                              <option>option 4</option>
+                              <option>option 5</option>
+                            </select>
+                          </div>
+                        <div class="form-group">
+                        <label for="Skill Name">Skill Name</label>
+                        <input type="text" name="skill_name" class="form-control" id="skill_name" placeholder="Enter skill Name..">
+                        </div>
+                        <div class="form-group">
+                        <label for="Skill percentage">Percentage</label>
+                        <input type="text" name="percentage" class="form-control" id="percentage" placeholder="Percentage with %">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
 @endsection
 
 @section('add_js')

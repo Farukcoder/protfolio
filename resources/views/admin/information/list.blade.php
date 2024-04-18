@@ -65,7 +65,25 @@
                                                 @endphp
                                             </td>
 
-                                            <td class="project-actions">
+                                            <td class="project-actions"> 
+                                                <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    @if ($information->is_active == 1)
+                                                    <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </a>
+                                                    @else
+                                                    <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </a>
+                                                    @endif
+
+                                                </a>
                                                 <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
