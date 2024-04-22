@@ -65,7 +65,7 @@
                                                 @endphp
                                             </td>
 
-                                            <td class="project-actions"> 
+                                            <td class="project-actions">
                                                 <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>

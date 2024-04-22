@@ -84,6 +84,30 @@
                     </a>
                 </li>
 
+                <li class="nav-item @if($page == 'Role Create' || $page == 'Role List') menu-open @endif">
+                    <a href="#" class="nav-link @if($page == 'Role Create' || $page == 'Role List') active @endif">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Role Manage
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('role.create') }}" class="nav-link @if($page == 'Role Create') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('role.index') }}" class="nav-link @if($page == 'Role List') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-header">EXAMPLES</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

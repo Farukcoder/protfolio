@@ -5,6 +5,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,5 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('skill', SkillController::class);
     Route::resource('education',EducationController::class);
     Route::resource('experience',ExperienceController::class);
+    Route::resource('role', RoleController::class);
 });
