@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Role Create
+    Role View
 @endsection
 
 @php
-    $page = "Role Create"
+    $page = "Role view"
 @endphp
 
 @section('main_content')
@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Role Create</h3>
+                            <h3 class="card-title">Role View</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group col-md-4">

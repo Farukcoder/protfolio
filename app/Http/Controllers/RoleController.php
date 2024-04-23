@@ -95,7 +95,7 @@ class RoleController extends Controller
 
         try {
             $request->validate([
-                'role_name' => "bail|required|unique:roles,name,$role->id"
+                'role_name' => "bail|required|unique:roles,name, $role->id"
             ]);
 
             $role->update(['name' => $request->role_name]);
@@ -124,8 +124,10 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        $notify = ['message'=> 'Role Delete Successfully', 'alert-type' => 'success'];
+        return redirect()->back()->with($notify);
     }
 }

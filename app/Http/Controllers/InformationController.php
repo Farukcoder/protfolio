@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Information;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,12 @@ class InformationController extends Controller
     public function create()
     {
         return view('admin.information.add');
+    }
+
+    public function getUser()
+    {
+        $user = User::with('role.permissions')->get();
+        return $user;
     }
 
     /**

@@ -20,18 +20,22 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         $permissions = [
+            ['name' => 'information'],
             ['name' => 'information add'],
             ['name' => 'information list'],
             ['name' => 'information edit'],
             ['name' => 'information delete'],
+            ['name' => 'skill'],
             ['name' => 'skill add'],
             ['name' => 'skill list'],
             ['name' => 'skill edit'],
             ['name' => 'skill delete'],
+            ['name' => 'education'],
             ['name' => 'education add'],
             ['name' => 'education list'],
             ['name' => 'education edit'],
             ['name' => 'education delete'],
+            ['name' => 'experience'],
             ['name' => 'experience add'],
             ['name' => 'experience list'],
             ['name' => 'experience edit'],
