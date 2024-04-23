@@ -16,8 +16,6 @@ class RoleController extends Controller
     {
         $roles = Role::with('permissions')->latest()->get();
 
-        return $roles;
-
         return view('admin.role.index', compact('roles'));
     }
 
@@ -45,7 +43,13 @@ class RoleController extends Controller
 
             $role = Role::create(['name' => $request->role_name, 'guard_name' => 'web']);
 
-            $role->syncPermissions($request->permissions);
+            $post_permissions = $request->input('permissions');
+
+            foreach ($post_permissions as $key => $val) {
+                $permissions[intval($val)] = intval($val);
+            }
+
+            $role->syncPermissions($permissions);
 
             DB::commit();
 
@@ -66,7 +70,9 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $role = Role::with('permissions')->findOrFail($id);
+
+        return view('admin.role.show', compact('role'));
     }
 
     /**
@@ -74,19 +80,45 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+        $role = Role::with('permissions')->findOrFail($id);
 
-        // dd($role);
-
-        return view('admin.role.edit', compact('role'));
+        return view('admin.role.edit', compact('permissions','role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $request->validate([
+                'role_name' => "bail|required|unique:roles,name,$role->id"
+            ]);
+
+            $role->update(['name' => $request->role_name]);
+
+            $post_permissions = $request->input('permissions');
+
+            foreach ($post_permissions as $key => $val) {
+                $permissions[intval($val)] = intval($val);
+            }
+
+            $role->syncPermissions($permissions);
+
+            DB::commit();
+
+            $notify = ['message'=> 'Role Update Successfully', 'alert-type' => 'success'];
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            $notify = ['message'=> 'Role update Failed', 'alert-type' => 'error'];
+        }
+
+        return redirect()->back()->with($notify);
+
     }
 
     /**
