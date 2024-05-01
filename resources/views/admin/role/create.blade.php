@@ -42,7 +42,6 @@
                                                 <label for="permissions{{ $permission->id }}" class="custom-control-label">{{ $permission->name }}</label>
                                             </div>
                                         @endforeach
-
                                     </div>
                                 </div>
                             </div>

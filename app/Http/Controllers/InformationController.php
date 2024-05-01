@@ -29,12 +29,6 @@ class InformationController extends Controller
         return view('admin.information.add');
     }
 
-    public function getUser()
-    {
-        $user = User::with('role.permissions')->get();
-        return $user;
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -205,4 +199,18 @@ class InformationController extends Controller
 
         return redirect()->back()->with($notify);
     }
+
+    public function statusUpdate(Request $request, string $id)
+    {
+
+        Information::where('is_active', 1)->update(['is_active' => 0]);
+
+        Information::where('id', $id)->update(['is_active' => $request->is_active]);
+
+        $notify = ['message'=> 'Status Update Successfully', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
+    }
+
+
 }

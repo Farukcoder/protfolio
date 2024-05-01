@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Information;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -11,7 +13,11 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return view('admin.skill');
+        $skills = Skill::with('information')->latest()->get();
+
+        $informations = Information::latest()->get();
+
+        return view('admin.skill', compact('skills', 'informations'));
     }
 
     /**
@@ -27,7 +33,23 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'information_id' => 'bail|required|integer',
+            'skill_name' => 'bail|required|string',
+            'percentage' => 'bail|required',
+        ]);
+
+        $data = [
+            'information_id' => $request->information_id,
+            'skill_name' => $request->skill_name,
+            'percentage' => $request->percentage
+        ];
+
+        Skill::create($data);
+
+        $notify = ['message' => 'Skill added successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**
@@ -43,7 +65,7 @@ class SkillController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -51,7 +73,23 @@ class SkillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'information_id' => 'bail|required|integer',
+            'skill_name' => 'bail|required|string',
+            'percentage' => 'bail|required',
+        ]);
+
+        $data = [
+            'information_id' => $request->information_id,
+            'skill_name' => $request->skill_name,
+            'percentage' => $request->percentage,
+        ];
+
+        Skill::where('id', $id)->update($data);
+
+        $notify = ['message' => 'Skill updated successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**
@@ -59,6 +97,12 @@ class SkillController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $skill = Skill::findOrfail($id);
+
+        $skill->delete();
+
+        $notify = ['message' => 'Skill deleted successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 }

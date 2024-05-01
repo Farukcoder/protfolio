@@ -33,10 +33,8 @@
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Nationality</th>
-                                    <th>Address</th>
                                     <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Language</th>
+{{--                                    <th>Language</th>--}}
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -48,42 +46,22 @@
                                             <td>{{ $information->first_name .' '. $information->last_name }}</td>
                                             <td>{{ $information->age }}</td>
                                             <td>{{ $information->nationality }}</td>
-                                            <td>{{ $information->address }}</td>
                                             <td>{{ $information->phone }}</td>
-                                            <td>{{ $information->email }}</td>
                                             <td>
-                                                @php
-                                                    $languages = json_decode($information->languages);
-                                                @endphp
-                                                @foreach($languages as $language)
-                                                    {{ $language }}
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                @php
-                                                    echo $information->is_active == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
-                                                @endphp
+                                                @if ($information->is_active == 1)
+                                                    <button class="badge badge-success"> Active</button>
+                                                @else
+                                                    <form action="{{ route('information.status', $information->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="hidden" name="is_active" value="1">
+                                                        <button class="badge badge-danger"> Inactive</button>
+                                                    </form>
+                                                @endif
+
                                             </td>
 
                                             <td class="project-actions">
-                                                <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    @if ($information->is_active == 1)
-                                                    <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    @else
-                                                    <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    @endif
-
-                                                </a>
                                                 <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
