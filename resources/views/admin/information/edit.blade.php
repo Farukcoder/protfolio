@@ -15,7 +15,7 @@
             <div class="card card-default">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ route('information.update', $information->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('informations.update', $information->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <input type="hidden" name="_method" value="put">

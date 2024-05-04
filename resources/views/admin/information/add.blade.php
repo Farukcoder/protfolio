@@ -15,7 +15,7 @@
             <div class="card card-default">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ route('information.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('informations.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row mt-3">
                             <div class="col-md-12">

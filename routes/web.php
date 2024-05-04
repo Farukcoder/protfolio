@@ -28,10 +28,9 @@ require __DIR__.'/auth.php';
 //admin route
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
-    Route::put('/information/{id}/status', [InformationController::class, 'statusUpdate'])->name('information.status');
-    Route::resource('information', InformationController::class);
-    Route::resource('skill', SkillController::class);
-    Route::resource('education',EducationController::class);
-    Route::resource('experience',ExperienceController::class);
-    Route::resource('role', RoleController::class);
+    Route::put('/informations/{id}/status', [InformationController::class, 'statusUpdate'])->name('informations.status');
+    Route::resource('informations', InformationController::class);
+    Route::resource('skills', SkillController::class);
+    Route::resource('educations',EducationController::class);
+    Route::resource('experiences',ExperienceController::class);
 });

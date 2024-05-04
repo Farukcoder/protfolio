@@ -51,7 +51,7 @@
                                                 @if ($information->is_active == 1)
                                                     <button class="badge badge-success"> Active</button>
                                                 @else
-                                                    <form action="{{ route('information.status', $information->id) }}" method="POST">
+                                                    <form action="{{ route('informations.status', $information->id) }}" method="POST">
                                                         @csrf
                                                         @method('put')
                                                         <input type="hidden" name="is_active" value="1">
@@ -62,13 +62,13 @@
                                             </td>
 
                                             <td class="project-actions">
-                                                <a class="btn btn-info btn-sm" href="{{ route('information.edit', $information->id) }}">
+                                                <a class="btn btn-info btn-sm" href="{{ route('informations.edit', $information->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
                                                 <a class="btn btn-red btn-sm">
-                                                    <form action="{{ route('information.destroy', $information->id) }}" method="POST">
+                                                    <form action="{{ route('informations.destroy', $information->id) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>

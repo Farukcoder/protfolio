@@ -24,7 +24,9 @@
                         <div class="card-header">
                             <h3 class="card-title">DataTable with default features</h3>
                             <div class="text-right mb-3">
-                                <a href="#" class="btn btn-sm btn-primary"> <i class="fas fa-plus"></i> Add Education</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                    <i class="fas fa-plus"></i> Add Education
+                                </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -76,6 +78,78 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Education Model</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('educations.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Education Gainer</label>
+                                <select class="form-control @error('information_id') is-invalid @enderror" name="information_id" id="information_id" required>
+                                    <option>Select Education Gainer</option>
+                                    @foreach($informations as $information)
+                                        <option value="{{ $information->id }}" >{{ $information->first_name .' '. $information->last_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('information_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="Campus Name">Campus Name</label>
+                                <input type="text" name="campus_name" class="form-control @error('campus_name') is-invalid @enderror" id="campus_name" required placeholder="Enter Campus Name..">
+
+                                @error('campus_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Degree Name">Degree Name</label>
+                                <input type="text" name="degree" class="form-control @error('degree') is-invalid @enderror" id="degree" required placeholder="Enter Degree Name..">
+
+                                @error('degree')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Department Name">Department Name</label>
+                                <input type="text" name="department" class="form-control @error('department') is-invalid @enderror" id="department" required placeholder="Enter Degree Name..">
+
+                                @error('department')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Passing Year">Passing Year</label>
+                                <input type="date" name="passing_year" class="form-control @error('passing_year') is-invalid @enderror" id="passing_year" required >
+                                @error('passing_year')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 
 @section('add_js')

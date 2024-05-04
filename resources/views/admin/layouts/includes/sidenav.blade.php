@@ -43,13 +43,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('information.create') }}" class="nav-link @if($page == 'Information Add') active @endif">
+                            <a href="{{ route('informations.create') }}" class="nav-link @if($page == 'Information Add') active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('information.index') }}" class="nav-link @if($page == 'Information List') active @endif">
+                            <a href="{{ route('informations.index') }}" class="nav-link @if($page == 'Information List') active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
@@ -58,7 +58,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('skill.index') }}" class="nav-link @if($page == 'Skills') active @endif">
+                    <a href="{{ route('skills.index') }}" class="nav-link @if($page == 'Skills') active @endif">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Skills
@@ -67,7 +67,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('education.index') }}" class="nav-link @if($page == 'Educations') active @endif">
+                    <a href="{{ route('educations.index') }}" class="nav-link @if($page == 'Educations') active @endif">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Educations
@@ -76,36 +76,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('experience.index') }}" class="nav-link @if($page == 'Experiences') active @endif">
+                    <a href="{{ route('experiences.index') }}" class="nav-link @if($page == 'Experiences') active @endif">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Experiences
                         </p>
                     </a>
-                </li>
-
-                <li class="nav-item @if($page == 'Role Create' || $page == 'Role List') menu-open @endif">
-                    <a href="#" class="nav-link @if($page == 'Role Create' || $page == 'Role List') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Role Manage
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('role.create') }}" class="nav-link @if($page == 'Role Create') active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('role.index') }}" class="nav-link @if($page == 'Role List') active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>List</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="nav-header">EXAMPLES</li>

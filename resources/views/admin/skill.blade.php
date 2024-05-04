@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="text-right mb-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
                                     <i class="fas fa-plus"></i> Add skill
                                 </button>
                             </div>
@@ -54,7 +54,7 @@
                                                 Edit
                                             </button>
                                             <a class="btn btn-red btn-sm">
-                                                <form action="{{ route('skill.destroy', $skill->id) }}" method="POST">
+                                                <form action="{{ route('skills.destroy', $skill->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
@@ -63,7 +63,7 @@
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="{{ 'skill'. $skill->id . 'editModal' }}">
-                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-dialog modal-default">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">Skill Model Edit</h4>
@@ -71,7 +71,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('skill.update', $skill->id) }}" method="post">
+                                                <form action="{{ route('skills.update', $skill->id) }}" method="post">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-body">
@@ -130,8 +130,8 @@
         <!-- /.container-fluid -->
     </section>
 
-    <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade show" id="modal-default">
+        <div class="modal-dialog modal-default">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Skill Model</h4>
@@ -139,7 +139,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('skill.store') }}" method="post">
+                <form action="{{ route('skills.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="card-body">
