@@ -11,4 +11,9 @@ class Experience extends Model
     use SoftDeletes, HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function information()
+    {
+        return $this->belongsTo(Information::class);
+    }
 }

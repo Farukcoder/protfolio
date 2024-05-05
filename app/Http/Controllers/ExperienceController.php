@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
@@ -11,7 +13,12 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        return view('admin.experience');
+
+        $experiences = Experience::with('information')->latest()->get();
+
+        $informations = Information::latest()->get();
+
+        return view('admin.experience', compact('informations', 'experiences'));
     }
 
     /**
@@ -27,7 +34,29 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'information_id' => 'bail|required',
+            'company_name' => 'bail|required',
+            'designation' => 'bail|required',
+            'start_date' => 'bail|required|date',
+            'responsibility' => 'bail|required',
+        ]);
+
+        $data = [
+            'information_id' => $request->information_id,
+            'company_name' => $request->company_name,
+            'designation' => $request->designation,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'responsibility' => $request->responsibility,
+        ];
+
+        Experience::create($data);
+
+        $notify = ['message' => 'Experience added successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
+
     }
 
     /**
@@ -51,7 +80,28 @@ class ExperienceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'information_id' => 'bail|required',
+            'company_name' => 'bail|required',
+            'designation' => 'bail|required',
+            'start_date' => 'bail|required|date',
+            'responsibility' => 'bail|required',
+        ]);
+
+        $data = [
+            'information_id' => $request->information_id,
+            'company_name' => $request->company_name,
+            'designation' => $request->designation,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'responsibility' => $request->responsibility,
+        ];
+
+        Experience::where('id', $id)->update($data);
+
+        $notify = ['message' => 'Experience update successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**
@@ -59,6 +109,12 @@ class ExperienceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $experience = Experience::findOrfail($id);
+
+        $experience->delete();
+
+        $notify = ['message' => 'Experience deleted successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 }
