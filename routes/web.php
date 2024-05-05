@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +35,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('skills', SkillController::class);
     Route::resource('educations',EducationController::class);
     Route::resource('experiences',ExperienceController::class);
+    Route::resource('projects',ProjectController::class);
+    Route::resource('contacts',ContactController::class);
 });

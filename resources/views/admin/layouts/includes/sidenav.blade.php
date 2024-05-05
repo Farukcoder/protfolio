@@ -84,23 +84,22 @@
                     </a>
                 </li>
 
-                <li class="nav-header">EXAMPLES</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('projects.index') }}" class="nav-link @if($page == 'Projects') active @endif">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Charts
-                            <i class="right fas fa-angle-left"></i>
+                            Project
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ChartJS</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('contacts.index') }}" class="nav-link @if($page == 'Contacts') active @endif">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Contact
+                        </p>
+                    </a>
                 </li>
             </ul>
         </nav>
