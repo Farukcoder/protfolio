@@ -78,7 +78,27 @@ class EducationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "information_id" => "bail|required",
+            "campus_name" => "bail|required",
+            "degree" => "bail|required",
+            "department" => "bail|required",
+            "passing_year" => "bail|required",
+        ]);
+
+        $data = [
+            "information_id" => $request->information_id,
+            "campus_name" => $request->campus_name,
+            "degree" => $request->degree,
+            "department" => $request->department,
+            "passing_year" => $request->passing_year,
+        ];
+
+        Education::where('id', $id)->update($data);
+
+        $notify = ['message' => 'Education Update successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**
@@ -86,6 +106,12 @@ class EducationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $education = Education::findOrfail($id);
+
+        $education->delete();
+
+        $notify = ['message' => 'Education deleted successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 }

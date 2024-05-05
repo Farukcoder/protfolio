@@ -52,20 +52,94 @@
                                         <td>{{ $education->passing_year }}</td>
 
                                         <td class="project-actions">
-                                            <a class="btn btn-info btn-sm" href="">
+                                            <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="{{ "#education" . $education->id . "editModal" }}">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
-                                            </a>
+                                            </button>
                                             <a class="btn btn-red btn-sm">
-                                                <form action="" method="POST">
+                                                <form action="{{ route('educations.destroy', $education->id) }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
                                                 </form>
                                             </a>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="{{ 'education'. $education->id . 'editModal' }}">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Education Model</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('educations.update', $education->id) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="modal-body">
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label>Education Gainer</label>
+                                                                <select class="form-control @error('information_id') is-invalid @enderror" name="information_id" id="information_id" required>
+                                                                    <option>Select Education Gainer</option>
+                                                                    @foreach($informations as $information)
+                                                                        <option value="{{ $information->id }}" @if($information->id == $education->information_id) selected @endif >{{ $information->first_name .' '. $information->last_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('information_id')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Campus Name">Campus Name</label>
+                                                                <input type="text" name="campus_name" class="form-control @error('campus_name') is-invalid @enderror" id="campus_name" value="{{ $education->campus_name }}" required placeholder="Enter Campus Name..">
+
+                                                                @error('campus_name')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="Degree Name">Degree Name</label>
+                                                                <input type="text" name="degree" class="form-control @error('degree') is-invalid @enderror" id="degree" value="{{ $education->degree }}" required placeholder="Enter Degree Name..">
+
+                                                                @error('degree')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="Department Name">Department Name</label>
+                                                                <input type="text" name="department" class="form-control @error('department') is-invalid @enderror" id="department" value="{{ $education->department }}" required placeholder="Enter Department Name..">
+
+                                                                @error('department')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="Passing Year">Passing Year</label>
+                                                                <input type="date" name="passing_year" class="form-control @error('passing_year') is-invalid @enderror" id="passing_year" value="{{ date('Y-m-d', strtotime($education->passing_year)) }}" required >
+
+                                                                @error('passing_year')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-warning">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                 @endforeach
 
                                 </tbody>
