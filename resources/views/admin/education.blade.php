@@ -36,35 +36,38 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Nationality</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
+                                    <th>Campus</th>
+                                    <th>Degree</th>
+                                    <th>Passing Year</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                @foreach($educations as $key => $education)
+                                    <tr>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $education->information->first_name }}</td>
+                                        <td>{{ $education->campus_name }}</td>
+                                        <td>{{ $education->degree }}</td>
+                                        <td>{{ $education->passing_year }}</td>
 
-                                    <td class="project-actions">
-                                        <a class="btn btn-info btn-sm" href="">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-red btn-sm">
-                                            <form action="" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
-                                            </form>
-                                        </a>
-                                    </td>
-                                </tr>
+                                        <td class="project-actions">
+                                            <a class="btn btn-info btn-sm" href="">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Edit
+                                            </a>
+                                            <a class="btn btn-red btn-sm">
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                                                </form>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -124,7 +127,7 @@
 
                             <div class="form-group">
                                 <label for="Department Name">Department Name</label>
-                                <input type="text" name="department" class="form-control @error('department') is-invalid @enderror" id="department" required placeholder="Enter Degree Name..">
+                                <input type="text" name="department" class="form-control @error('department') is-invalid @enderror" id="department" required placeholder="Enter Department Name..">
 
                                 @error('department')
                                 <div class="alert alert-danger">{{ $message }}</div>

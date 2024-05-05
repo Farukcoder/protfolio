@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('information_id')->constrained('information')->cascadeOnDelete();
+            $table->foreignId('information_id')->constrained('informations')->cascadeOnDelete();
             $table->string('duration');
             $table->string('company_name');
             $table->string('designation');
             $table->text('responsibility');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

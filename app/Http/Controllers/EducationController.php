@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use App\Models\Information;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,12 @@ class EducationController extends Controller
      */
     public function index()
     {
+
+        $educations = Education::with('information')->latest()->get();
+
         $informations = Information::latest()->get();
 
-        return view('admin.education', compact('informations'));
+        return view('admin.education', compact('educations','informations'));
     }
 
     /**
@@ -30,7 +34,27 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "information_id" => "bail|required",
+            "campus_name" => "bail|required",
+            "degree" => "bail|required",
+            "department" => "bail|required",
+            "passing_year" => "bail|required",
+        ]);
+
+        $data = [
+            "information_id" => $request->information_id,
+            "campus_name" => $request->campus_name,
+            "degree" => $request->degree,
+            "department" => $request->department,
+            "passing_year" => $request->passing_year,
+        ];
+
+        Education::create($data);
+
+        $notify = ['message' => 'Education added successfully!', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('information', function (Blueprint $table) {
+        Schema::table('informations', function (Blueprint $table) {
             $table->tinyInteger('is_active')->default(0)->after('description');
         });
     }

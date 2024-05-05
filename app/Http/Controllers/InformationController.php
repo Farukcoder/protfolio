@@ -43,7 +43,7 @@ class InformationController extends Controller
             'nationality' => 'required|string|max:255',
             'address' => 'required|string',
             'phone' => 'required|string|max:20',
-            'email' => 'required|string|email|max:255|unique:information',
+            'email' => 'required|string|email|max:255|unique:informations',
             'skype' => 'string|max:255',
             'whatsapp' => 'string|max:255',
             'linkedin' => 'string|max:255',
