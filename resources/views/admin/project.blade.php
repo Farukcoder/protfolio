@@ -30,87 +30,93 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="project_table" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>SL</th>
                                     <th>Name</th>
-                                    <th>Skill Name</th>
-                                    <th>Percentage</th>
+                                    <th>Project Title</th>
+                                    <th>Client</th>
+                                    <th>Url</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="project-actions">
-                                            <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </button>
-                                            <a class="btn btn-red btn-sm">
-                                                <form action="" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
-                                                </form>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="">
-                                        <div class="modal-dialog modal-default">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Skill Model Edit</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form action="" method="post">
-                                                    @csrf
-                                                    @method('put')
-                                                    <div class="modal-body">
-                                                        <div class="card-body">
-                                                            <div class="form-group">
-                                                                <label>Skill Gainer</label>
-                                                                <select class="form-control @error('information_id') is-invalid @enderror" name="information_id" id="information_id" required>
-                                                                    <option>Select Skill Gainer</option>
-                                                                </select>
-                                                                @error('information_id')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Skill Name">Skill Name</label>
-                                                                <input type="text" name="skill_name" class="form-control @error('skill_name') is-invalid @enderror" value="" id="skill_name" required placeholder="Enter skill Name..">
+                                    @foreach($projects as $key => $project)
+                                        <tr>
+                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $project->information->first_name }}</td>
+                                            <td>{{ $project->title }}</td>
+                                            <td>{{ $project->client }}</td>
+                                            <td>{{ $project->url }}</td>
+                                            <td class="project-actions">
+                                                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </button>
+                                                <a class="btn btn-red btn-sm">
+                                                    <form action="" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
+                                                    </form>
+                                                </a>
+                                            </td>
+                                        </tr>
 
-                                                                @error('skill_name')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Skill percentage">Percentage</label>
-                                                                <input type="text" name="percentage" class="form-control @error('percentage') is-invalid @enderror" value="" id="percentage" required placeholder="Percentage with %">
-                                                                @error('percentage')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                                @enderror
+                                        <div class="modal fade" id="">
+                                            <div class="modal-dialog modal-default">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Skill Model Edit</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <div class="modal-body">
+                                                            <div class="card-body">
+                                                                <div class="form-group">
+                                                                    <label>Skill Gainer</label>
+                                                                    <select class="form-control @error('information_id') is-invalid @enderror" name="information_id" id="information_id" required>
+                                                                        <option>Select Skill Gainer</option>
+                                                                    </select>
+                                                                    @error('information_id')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="Skill Name">Skill Name</label>
+                                                                    <input type="text" name="skill_name" class="form-control @error('skill_name') is-invalid @enderror" value="" id="skill_name" required placeholder="Enter skill Name..">
+
+                                                                    @error('skill_name')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="Skill percentage">Percentage</label>
+                                                                    <input type="text" name="percentage" class="form-control @error('percentage') is-invalid @enderror" value="" id="percentage" required placeholder="Percentage with %">
+                                                                    @error('percentage')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer justify-content-between">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-warning">Update</button>
-                                                    </div>
-                                                </form>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-warning">Update</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!-- /.modal-content -->
                                             </div>
-                                            <!-- /.modal-content -->
+                                            <!-- /.modal-dialog -->
                                         </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -126,10 +132,10 @@
     </section>
 
     <div class="modal fade show" id="modal-default">
-        <div class="modal-dialog modal-default">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Skill Model</h4>
+                    <h4 class="modal-title">Project Model</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -151,17 +157,46 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="Skill Name">Skill Name</label>
-                                <input type="text" name="skill_name" class="form-control @error('skill_name') is-invalid @enderror" id="skill_name" required placeholder="Enter skill Name..">
+                                <label for="Title">Title</label>
+                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" required placeholder="Enter Title..">
 
-                                @error('skill_name')
+                                @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="Skill percentage">Percentage</label>
-                                <input type="text" name="percentage" class="form-control @error('percentage') is-invalid @enderror" id="percentage" required placeholder="Percentage with %">
-                                @error('percentage')
+                                <label for="Client">Client</label>
+                                <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" id="client" required placeholder="Enter Client name">
+                                @error('client')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Technology">Technology</label>
+                                <input type="text" name="technology" class="form-control @error('technology') is-invalid @enderror" id="technology" required placeholder="Enter Client name">
+                                @error('technology')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Image">Image</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" name="image">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="text-center col-md-6">
+                                <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/photo/project/default.png') }}" alt="User profile picture">
+                            </div>
+                            <div class="form-group">
+                                <label for="Url">Url</label>
+                                <input type="text" name="url" class="form-control @error('url') is-invalid @enderror" id="url" required placeholder="Enter Url..">
+                                @error('url')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -195,8 +230,21 @@
     <script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
     <script>
+        $(document).ready(function() {
+            $('#image').on('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#preview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
         $(function () {
-            $("#example1").DataTable({
+            $("#project_table").DataTable({
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
