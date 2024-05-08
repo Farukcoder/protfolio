@@ -50,7 +50,7 @@
                                             <td>{{ $project->client }}</td>
                                             <td>{{ $project->url }}</td>
                                             <td class="project-actions">
-                                                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="">
+                                                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="{{ "#project" . $project->id . "editModal" }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Edit
@@ -65,41 +65,74 @@
                                             </td>
                                         </tr>
 
-                                        <div class="modal fade" id="">
-                                            <div class="modal-dialog modal-default">
+                                        <div class="modal fade show" id="{{ "project" . $project->id . "editModal" }}">
+                                            <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Skill Model Edit</h4>
+                                                        <h4 class="modal-title">Project Model</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="" method="post">
+                                                    <form action="{{ route('projects.update', $project->id) }}" method="post">
                                                         @csrf
-                                                        @method('put')
+                                                        @method('PUT')
                                                         <div class="modal-body">
                                                             <div class="card-body">
                                                                 <div class="form-group">
-                                                                    <label>Skill Gainer</label>
+                                                                    <label>Project Owner</label>
                                                                     <select class="form-control @error('information_id') is-invalid @enderror" name="information_id" id="information_id" required>
-                                                                        <option>Select Skill Gainer</option>
+                                                                        <option>Select Project</option>
+                                                                        @foreach($informations as $information)
+                                                                            <option value="{{ $information->id }}" @if($information->id == $project->information_id) selected @endif>{{ $information->first_name .' '. $information->last_name }}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                     @error('information_id')
                                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Skill Name">Skill Name</label>
-                                                                    <input type="text" name="skill_name" class="form-control @error('skill_name') is-invalid @enderror" value="" id="skill_name" required placeholder="Enter skill Name..">
+                                                                    <label for="Title">Title</label>
+                                                                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $project->title }}" required placeholder="Enter Title..">
 
-                                                                    @error('skill_name')
+                                                                    @error('title')
                                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Skill percentage">Percentage</label>
-                                                                    <input type="text" name="percentage" class="form-control @error('percentage') is-invalid @enderror" value="" id="percentage" required placeholder="Percentage with %">
-                                                                    @error('percentage')
+                                                                    <label for="Client">Client</label>
+                                                                    <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" id="client" value="{{ $project->client }}" required placeholder="Enter Client name">
+                                                                    @error('client')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="Technology">Technology</label>
+                                                                    <input type="text" name="technology" class="form-control @error('technology') is-invalid @enderror" id="technology" value="{{ $project->technology }}" required placeholder="Enter Client name">
+                                                                    @error('technology')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="Image">Image</label>
+                                                                    <div class="custom-file">
+                                                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                        <input type="hidden" id="old_image" name="old_image" value="{{ $project->image }}">
+                                                                    </div>
+                                                                    @error('image')
+                                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="text-center col-md-6">
+                                                                    <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/photo/project/'.$project->image) }}" alt="User profile picture">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="Url">Url</label>
+                                                                    <input type="text" name="url" class="form-control @error('url') is-invalid @enderror" id="url" value="{{ $project->url }}" required placeholder="Enter Url..">
+                                                                    @error('url')
                                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
@@ -107,7 +140,7 @@
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-warning">Update</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
                                                         </div>
                                                     </form>
                                                 </div>

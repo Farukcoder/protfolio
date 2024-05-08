@@ -91,7 +91,44 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'information_id' => 'bail|required',
+            'title' => 'bail|required',
+            'technology' => 'bail|required',
+        ]);
+
+        $data = [
+            'information_id' => $request->information_id,
+            'title' => $request->title,
+            'client' => $request->client,
+            'technology' => $request->technology,
+            'url' => $request->url,
+        ];
+
+        if ($request->hasFile('image')) {
+
+            if ($request->old_thumb) {
+                File::delete(public_path('admin/assets/photo/project' . $request->old_image));
+            }
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = "PR". time(). '.' . $extension;
+
+            ///image resize
+            $manager = new ImageManager(new Driver());
+            $photo = $manager->read($file);
+            $photo->resize(1349, 643)->save(public_path('admin/assets/photo/project'. $filename));
+
+            $data['image'] = $filename;
+        }
+
+        $project = new Project();
+        $project->update($data);
+
+        $notify = ['message'=> 'Project Update Successfully', 'alert-type' => 'success'];
+
+        return redirect()->back()->with($notify);
     }
 
     /**
