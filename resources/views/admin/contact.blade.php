@@ -28,32 +28,29 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Name</th>
-                                    <th>Skill Name</th>
-                                    <th>Percentage</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="project-actions">
-                                        <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </button>
-                                        <a class="btn btn-red btn-sm">
-                                            <form action="" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
-                                            </form>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach($contacts as $key => $contact)
+                                    <tr>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $contact->name }}</td>
+                                        <td>{{ $contact->subject }}</td>
+                                        <td>{{ $contact->message }}</td>
+                                        <td>{{ $contact->email }}</td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm" href="{{ route('projects.show', $information->id) }}">
+                                                <i class="fas fa-eye-alt">
+                                                </i>
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
