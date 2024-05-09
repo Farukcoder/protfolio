@@ -136,6 +136,11 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::findOrfail($id);
+
+        $project->delete();
+
+        $notify = ['message'=> 'Project Delete Successfully', 'alert-type' => 'success'];
+        return redirect()->back()->with($notify);
     }
 }

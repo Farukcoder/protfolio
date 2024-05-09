@@ -56,7 +56,7 @@
                                                     Edit
                                                 </button>
                                                 <a class="btn btn-red btn-sm">
-                                                    <form action="" method="POST">
+                                                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
@@ -126,9 +126,6 @@
                                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
-                                                                <div class="text-center col-md-6">
-                                                                    <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/photo/project/'.$project->image) }}" alt="User profile picture">
-                                                                </div>
                                                                 <div class="form-group">
                                                                     <label for="Url">Url</label>
                                                                     <input type="text" name="url" class="form-control @error('url') is-invalid @enderror" id="url" value="{{ $project->url }}" required placeholder="Enter Url..">
@@ -173,7 +170,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('projects.store') }}" method="post">
+                <form action="{{ route('projects.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="card-body">
@@ -223,9 +220,6 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="text-center col-md-6">
-                                <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/photo/project/default.png') }}" alt="User profile picture">
-                            </div>
                             <div class="form-group">
                                 <label for="Url">Url</label>
                                 <input type="text" name="url" class="form-control @error('url') is-invalid @enderror" id="url" required placeholder="Enter Url..">
@@ -263,6 +257,7 @@
     <script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
     <script>
+
         $(document).ready(function() {
             $('#image').on('change', function(event) {
                 var file = event.target.files[0];
@@ -283,6 +278,8 @@
                 "autoWidth": false,
                 "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            bsCustomFileInput.init();
         });
     </script>
 @endsection

@@ -37,6 +37,9 @@
 <!-- toaster js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- bs-custom-file-input -->
+<script src="{{asset('admin/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
 @yield('add_js')
 <script>
     @if (Session::has('message'))
