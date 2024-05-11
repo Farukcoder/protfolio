@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/portfolio/{portfolio}', [HomeController::class, 'show'])->name('home.show');
+Route::get('/portfolio/{portfolio}', [HomeController::class, 'show'])->name('portfolio.show');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

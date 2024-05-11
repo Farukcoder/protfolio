@@ -15,115 +15,31 @@
     </section>
     <div class="album py-5 bg-light">
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                @foreach($informations as $information)
+                    <div class="col">
                     <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
+                        <img src="{{ asset('admin/assets' . ($information->photo ? '/photo/' . $information->photo : '/dist/img/user4-128x128.jpg')) }}" class="rounded" alt="">
                         <div class="card-body text-center">
-                            <h3> Nurul Amin Limon </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> namin11@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
+                            <h5> {{ $information->first_name }} {{ $information->last_name }} </h5>
+                            <h6>
+                                <a href="{{ $information->facebook }}"><i class="fa-brands fa-facebook"></i></a> <a href="{{ $information->linkedin }}"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="{{ $information->skype }}"><i class="fa-brands fa-skype"></i></a>
+                                <a href="{{ $information->whatsapp }}"><i class="fa-brands fa-square-whatsapp"></i></a>
+                            </h6>
+                            <b> {{ $information->email }} </b>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
                                 <div class="btn-group ">
                                     <button type="button" class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
+                                        <a href="{{ route('portfolio.show', encrypt($information->id)) }}">View</a>
                                     </button>
                                 </div>
-                                <small class="text-muted ">27 Ag 2023</small>
+                                <small class="text-muted ">{{ date('d M Y', strtotime($information->created_at)) }}</small>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
-                        <div class="card-body text-center">
-                            <h3> Md Omar Faruk </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> omarfaruk11@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div class="btn-group ">
-                                    <button type="button " class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
-                                    </button>
-                                </div>
-                                <small class="text-muted ">29 Ag 2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
-                        <div class="card-body text-center">
-                            <h3> Mohammadul Kader </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> mksoikot117@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div class="btn-group ">
-                                    <button type="button " class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
-                                    </button>
-                                </div>
-                                <small class="text-muted ">25 Ag 2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
-                        <div class="card-body text-center">
-                            <h3> Mohammadul Kader </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> mksoikot117@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div class="btn-group ">
-                                    <button type="button " class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
-                                    </button>
-                                </div>
-                                <small class="text-muted ">25 Ag 2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
-                        <div class="card-body text-center">
-                            <h3> Mohammadul Kader </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> mksoikot117@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div class="btn-group ">
-                                    <button type="button " class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
-                                    </button>
-                                </div>
-                                <small class="text-muted ">25 Ag 2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="{{asset('web/assets/img/profile.jpg')}}" class="rounded" alt="">
-                        <div class="card-body text-center">
-                            <h3> Mohammadul Kader </h3>
-                            <h5> Software Engineer </h5>
-                            <h6> mksoikot117@gmail.com</h6>
-                            <div class="d-flex justify-content-between align-items-center ">
-                                <div class="btn-group ">
-                                    <button type="button " class="btn btn-sm btn-outline-secondary ">
-                                        <a href="{{ url('/portfolio') }}">View</a>
-                                    </button>
-                                </div>
-                                <small class="text-muted ">25 Ag 2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

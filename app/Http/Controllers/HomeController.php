@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +12,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('web.home');
+        $informations = Information::orderBy('id', 'desc')->get();
+
+        return view('web.home', compact('informations'));
     }
 
     /**
@@ -35,7 +38,9 @@ class HomeController extends Controller
      */
     public function show(string $id)
     {
-        return view('web.portfolio');
+        $allInfo = Information::with(['skills', 'experiences', 'educations', 'projects'])->findOrfail(decrypt($id));
+
+        return view('web.portfolio', compact('allInfo'));
     }
 
     /**
