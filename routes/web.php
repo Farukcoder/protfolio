@@ -12,7 +12,11 @@ use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('web.home');
+});
+
+Route::get('/portfolio', function () {
+    return view('web.portfolio');
 });
 
 Route::get('/dashboard', function () {
