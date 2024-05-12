@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $informations = Information::orderBy('id', 'desc')->paginate(10);
+        $informations = Information::orderBy('id', 'desc')->paginate(12);
 
         return view('web.home', compact('informations'));
     }

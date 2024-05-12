@@ -37,9 +37,11 @@
                 </div>
                 @endforeach
             </div>
-            {{ $informations->links() }}
+            <br>
+            {{ $informations->links('vendor.pagination.bootstrap-5') }}
         </div>
     </div>
+
 </main>
 
 @include('web.includes.footer')

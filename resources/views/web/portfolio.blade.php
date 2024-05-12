@@ -95,22 +95,21 @@
                     @foreach($allInfo->projects as $project)
                         <div class="col-md-4">
                             <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <img class="img-fluid" src="{{ asset("admin/assets/photo/project/". $project->image ) }}" alt="Project Image">
 
-                                    <div class="p-3">
-                                        <h6 class="fw-bolder">{{ $project->title }}</h6>
-                                        <p>{{ $project->technology }}</p>
+                                    <div class="card-body p-0">
+                                        <img class="img-fluid" src="{{ asset("admin/assets/photo/project/". $project->image ) }}" alt="Project Image">
+
+                                        <div class="p-3">
+                                            <a href="{{ $project->url }}">
+                                            <h6 class="fw-bolder">{{ $project->title }}</h6>
+                                            </a>
+                                            <p>{{ $project->technology }}</p>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
-
-
-
             </div>
         </div>
     </section>
