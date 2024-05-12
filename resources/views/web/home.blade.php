@@ -37,6 +37,7 @@
                 </div>
                 @endforeach
             </div>
+            {{ $informations->links() }}
         </div>
     </div>
 </main>

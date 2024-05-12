@@ -58,7 +58,7 @@ class ProjectController extends Controller
             ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(1349, 643)->save(public_path('admin/assets/photo/project'. $filename));
+            $photo->resize(400, 200)->save(public_path('admin/assets/photo/project/'. $filename));
 
             $data['image'] = $filename;
         }
@@ -97,6 +97,8 @@ class ProjectController extends Controller
             'technology' => 'bail|required',
         ]);
 
+        $project = Project::findOrFail($id);
+
         $data = [
             'information_id' => $request->information_id,
             'title' => $request->title,
@@ -107,29 +109,30 @@ class ProjectController extends Controller
 
         if ($request->hasFile('image')) {
 
-            if ($request->old_thumb) {
-                File::delete(public_path('admin/assets/photo/project' . $request->old_image));
+            // Delete the old image if it exists
+            if (!empty($request->old_image)) {
+                File::delete(public_path('admin/assets/photo/project/' . $request->old_image));
             }
 
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = "PR". time(). '.' . $extension;
+            $filename = "PR". time() . '.' . $extension;
 
-            ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(1349, 643)->save(public_path('admin/assets/photo/project'. $filename));
+            $photo->resize(400, 200)->save(public_path('admin/assets/photo/project/' . $filename));
 
             $data['image'] = $filename;
         }
 
-        $project = new Project();
+        // Update the project with new data
         $project->update($data);
 
-        $notify = ['message'=> 'Project Update Successfully', 'alert-type' => 'success'];
+        $notify = ['message' => 'Project Updated Successfully', 'alert-type' => 'success'];
 
         return redirect()->back()->with($notify);
     }
+
 
     /**
      * Remove the specified resource from storage.

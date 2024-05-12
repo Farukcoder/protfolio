@@ -74,7 +74,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('projects.update', $project->id) }}" method="post">
+                                                    <form action="{{ route('projects.update', $project->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">

@@ -23,15 +23,22 @@
                             <div class="col-md-12">
                                 <div class="form-group d-flex justify-content-center">
                                     <div class="text-center col-md-6">
-                                        <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets' . ($information->photo ? '/photo/' . $information->photo : '/dist/img/user4-128x128.jpg')) }}" alt="User profile picture">
-
+                                        <span class="text-danger text-center"> <b>Note: </b>Please provide 500*500 Image</span>
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="form-group d-flex justify-content-center">
+                                    <div class="text-center col-md-6">
+                                        <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets' . ($information->photo ? '/photo/' . $information->photo : '/dist/img/user4-128x128.jpg')) }}" alt="User profile picture">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="input-group mt-2 d-flex justify-content-center">
-                                    <div class="custom-file col-md-3">
+                                    <div class="custom-file col-md-6">
                                         <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo">
 
                                         <input type="hidden" id="old_photo" name="old_photo" value="{{ $information->photo }}">

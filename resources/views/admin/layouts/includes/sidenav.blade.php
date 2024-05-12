@@ -26,7 +26,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link @if($page == 'Dashboard') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
                         </p>
@@ -35,7 +35,7 @@
 
                 <li class="nav-item @if($page == 'Information Add' || $page == 'Information List') menu-open @endif">
                     <a href="#" class="nav-link @if($page == 'Information Add' || $page == 'Information List') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Information
                             <i class="right fas fa-angle-left"></i>
@@ -59,7 +59,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('skills.index') }}" class="nav-link @if($page == 'Skills') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Skills
                         </p>
@@ -68,7 +68,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('educations.index') }}" class="nav-link @if($page == 'Educations') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Educations
                         </p>
@@ -77,7 +77,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('experiences.index') }}" class="nav-link @if($page == 'Experiences') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Experiences
                         </p>
@@ -86,7 +86,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('projects.index') }}" class="nav-link @if($page == 'Projects') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Project
                         </p>
@@ -95,7 +95,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('contacts.index') }}" class="nav-link @if($page == 'Contacts') active @endif">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-th"></i>
                         <p>
                             Contact
                         </p>

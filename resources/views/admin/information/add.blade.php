@@ -21,6 +21,15 @@
                             <div class="col-md-12">
                                 <div class="form-group d-flex justify-content-center">
                                     <div class="text-center col-md-6">
+                                        <span class="text-danger text-center"> <b>Note: </b>Please provide 500*500 Image</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="form-group d-flex justify-content-center">
+                                    <div class="text-center col-md-6">
                                         <img class="profile-user-img img-fluid" id="preview" src="{{ asset('admin/assets/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
                                     </div>
                                 </div>

@@ -82,7 +82,7 @@ class InformationController extends Controller
             ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(600, 360)->save(public_path('admin/assets/photo/'. $filename));
+            $photo->resize(500, 500)->save(public_path('admin/assets/photo/'. $filename));
 
             $data['photo'] = $filename;
         }
@@ -173,7 +173,7 @@ class InformationController extends Controller
             ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(600, 360)->save(public_path('admin/assets/photo/'. $filename));
+            $photo->resize(500, 500)->save(public_path('admin/assets/photo/'. $filename));
 
             $data['photo'] = $filename;
         }
