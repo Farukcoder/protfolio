@@ -18,6 +18,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            padding-top: 26px; /* space for navbar */
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .bg-full {
+            background-image: url('{{ asset('web/assets/img/bg.png') }}'); /* Ensure correct path */
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 400px;
+        }
+
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+
 </head>
 
 <body>

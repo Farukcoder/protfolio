@@ -16,7 +16,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('web/css/styles.css') }}" rel="stylesheet" />
 
-
 </head>
 
 <body id="page-top">
@@ -36,9 +35,9 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#project">Projects</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
+{{--            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>--}}
+{{--            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>--}}
         </ul>
     </div>
 </nav>

@@ -89,26 +89,27 @@
     <!-- Skills-->
     <section class="resume-section" id="projects">
         <div class="resume-section-content">
-            <h2 class="mb-5">Skills</h2>
+            <h2 class="mb-5">Projects</h2>
             <div class="row d-flex">
-                <div class="col-md-12">
-                    @foreach($allInfo->skills as $skill)
-                        <div class="progress yellow">
-                            @php
-                                $percentageValue = intval($skill->percentage); // Convert percentage string to integer
-                            @endphp
+                <div class="row">
+                    @foreach($allInfo->projects as $project)
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                                <div class="card-body p-0">
+                                    <img class="img-fluid" src="{{ $project->image_url ?? 'https://dummyimage.com/300x150/343a40/6c757d' }}" alt="Project Image">
 
-                            <span class="progress-right">
-                                <span class="progress-bar" style="transform: rotate({{ $percentageValue > 50 ? '180' : ($percentageValue * 3.6) }}deg);"></span>
-                            </span>
-                            <span class="progress-left">
-                                <span class="progress-bar" style="animation: none; transform: rotate({{ $percentageValue > 50 ? (($percentageValue - 50) * 3.6) : '0' }}deg);"></span>
-                            </span>
-                            <div class="progress-value">{{ $skill->percentage }}</div>
+                                    <div class="p-3">
+                                        <h6 class="fw-bolder">{{ $project->title }}</h6>
+                                        <p>{{ $project->technology }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
-
                 </div>
+
+
+
 
             </div>
         </div>
