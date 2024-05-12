@@ -25,7 +25,7 @@
                             <h3 class="card-title">DataTable with default features</h3>
                             <div class="text-right mb-3">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
-                                    <i class="fas fa-plus"></i> Add Education
+                                    <i class="fas fa-plus"></i> Add Experience
                                 </button>
                             </div>
                         </div>
@@ -218,7 +218,7 @@
 
                             <div class="form-group">
                                 <label for="End Date">End Date</label>
-                                <input type="date" name="end_date" class="form-control @error('end_date') is-invalid @enderror" id="end_date" required placeholder="Enter End Date..">
+                                <input type="date" name="end_date" class="form-control @error('end_date') is-invalid @enderror" id="end_date" placeholder="Enter End Date..">
 
                                 @error('end_date')
                                 <div class="alert alert-danger">{{ $message }}</div>
