@@ -36,18 +36,29 @@
         }
 
         .bg-full {
-            background-image: url('{{ asset('web/assets/img/bg.png') }}'); /* Ensure correct path */
+            background-image: url('{{ asset('web/assets/img/bg.png') }}');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            background-repeat: no-repeat;
             width: 100%;
-            height: 400px;
+            height: 70vh;
         }
 
         .container-fluid {
             padding-left: 0;
             padding-right: 0;
         }
+
+        @media (max-width: 768px) {
+            .bg-full {
+                background-size: contain;
+                background-position: top center;
+            }
+        }
     </style>
+
+
+
 
 </head>
 
