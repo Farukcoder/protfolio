@@ -1,82 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.72.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>Portfolio|Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-    <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
+    <!-- Favicons -->
+    <link href="{{asset('web/front/img/favicon.png')}}" rel="icon">
+    <link href="{{asset('web/front/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Vendor CSS Files -->
+    <link href="{{asset('web/front/vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{asset('web/front/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('web/front/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('web/front/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{asset('web/front/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{asset('web/front/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
+    <!-- Template Main CSS File -->
+    <link href="{{asset('web/front/css/style.css')}}" rel="stylesheet">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            padding-top: 26px; /* space for navbar */
-            height: 100%;
-            overflow-x: hidden;
+        .navbar .nav-link {
+            color: #333;
+            padding: 10px 15px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .navbar {
-            width: 100%;
-            z-index: 1000;
-            position: fixed;
-            top: 0;
-            background-color: rgba(255, 255, 255, 0.95);
+        .navbar .getstarted {
+            border: 2px solid #007bff;
+            color: #007bff;
+            background-color: transparent;
         }
 
-        .bg-full {
-            background-image: url('{{ asset('web/assets/img/bg.png') }}');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 70vh;
+        .navbar .getstarted:hover {
+            background-color: #007bff;
+            color: #fff;
         }
 
-        .container-fluid {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        @media (max-width: 768px) {
-            .bg-full {
-                background-size: contain;
-                background-position: top center;
-            }
-        }
     </style>
-
-
-
-
 </head>
 
 <body>
 
-<header>
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a href="{{ route('home.index') }}" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                    <circle cx="12" cy="13" r="4" /></svg>
-                <strong>Portfolio</strong>
-            </a>
-            <button class="navbar-toggler" type="button" >
-                <a href="{{ route('login') }}">Login</a>
-            </button>
-        </div>
+        <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">
+            <img src="{{asset('web/front/img/logo.png')}}" alt="">
+            <span>Portfolio</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
+                <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>
+                <li><a class="getstarted scrollto" href="{{ route('register') }}">Register</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
     </div>
-</header>
+</header><!-- End Header -->
