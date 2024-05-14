@@ -31,7 +31,6 @@ require __DIR__.'/auth.php';
 //admin route
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
-    Route::put('/informations/{id}/status', [InformationController::class, 'statusUpdate'])->name('informations.status');
     Route::resource('informations', InformationController::class);
     Route::resource('skills', SkillController::class);
     Route::resource('educations',EducationController::class);

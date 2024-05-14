@@ -369,7 +369,7 @@ sup {
 }
 
 a {
-  color: var(--bs-link-color);
+  color: darkblue;
   text-decoration: underline;
 }
 a:hover {
@@ -8158,7 +8158,7 @@ textarea.form-control-lg {
 /* rtl:end:remove */
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+  color: darkblue;
 }
 
 .text-secondary {
@@ -8247,9 +8247,10 @@ textarea.form-control-lg {
   --bs-text-opacity: 1;
 }
 
+
 .bg-primary {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+    --bs-bg-opacity: 0.5;
+    background-color: darkblue;
 }
 
 .bg-secondary {

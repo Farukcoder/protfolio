@@ -34,8 +34,7 @@
                                     <th>Age</th>
                                     <th>Nationality</th>
                                     <th>Phone</th>
-{{--                                    <th>Language</th>--}}
-                                    <th>Status</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -47,20 +46,7 @@
                                             <td>{{ $information->age }}</td>
                                             <td>{{ $information->nationality }}</td>
                                             <td>{{ $information->phone }}</td>
-                                            <td>
-                                                @if ($information->is_active == 1)
-                                                    <button class="badge badge-success"> Active</button>
-                                                @else
-                                                    <form action="{{ route('informations.status', $information->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('put')
-                                                        <input type="hidden" name="is_active" value="1">
-                                                        <button class="badge badge-danger"> Inactive</button>
-                                                    </form>
-                                                @endif
-
-                                            </td>
-
+                                            <td>{{ $information->email }}</td>
                                             <td class="project-actions">
                                                 <a class="btn btn-info btn-sm" href="{{ route('informations.edit', $information->id) }}">
                                                     <i class="fas fa-pencil-alt">

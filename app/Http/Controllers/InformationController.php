@@ -82,7 +82,7 @@ class InformationController extends Controller
             ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(500, 500)->save(public_path('admin/assets/photo/'. $filename));
+            $photo->resize(600, 600)->save(public_path('admin/assets/photo/'. $filename));
 
             $data['photo'] = $filename;
         }
@@ -173,7 +173,7 @@ class InformationController extends Controller
             ///image resize
             $manager = new ImageManager(new Driver());
             $photo = $manager->read($file);
-            $photo->resize(500, 500)->save(public_path('admin/assets/photo/'. $filename));
+            $photo->resize(600, 600)->save(public_path('admin/assets/photo/'. $filename));
 
             $data['photo'] = $filename;
         }
@@ -196,18 +196,6 @@ class InformationController extends Controller
         $information->delete();
 
         $notify = ['message' => 'Information successfully delete', 'alert-type' => 'error'];
-
-        return redirect()->back()->with($notify);
-    }
-
-    public function statusUpdate(Request $request, string $id)
-    {
-
-        Information::where('is_active', 1)->update(['is_active' => 0]);
-
-        Information::where('id', $id)->update(['is_active' => $request->is_active]);
-
-        $notify = ['message'=> 'Status Update Successfully', 'alert-type' => 'success'];
 
         return redirect()->back()->with($notify);
     }
