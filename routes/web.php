@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
+Route::resource('contacts',ContactController::class);
 //admin route
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
@@ -36,5 +36,4 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('educations',EducationController::class);
     Route::resource('experiences',ExperienceController::class);
     Route::resource('projects',ProjectController::class);
-    Route::resource('contacts',ContactController::class);
 });

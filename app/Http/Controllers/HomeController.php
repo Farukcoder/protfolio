@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Information;
+use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +18,13 @@ class HomeController extends Controller
     {
         $informations = Information::orderBy('id', 'desc')->paginate(12);
 
-        return view('web.home', compact('informations'));
+        $information_count = Information::count();
+        $skill_count = Skill::count();
+        $education_count = Education::count();
+        $experience_count = Experience::count();
+        $project_count = Project::count();
+
+        return view('web.home', compact('informations', 'information_count', 'skill_count', 'education_count', 'experience_count', 'project_count'));
     }
 
     /**

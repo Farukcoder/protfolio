@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Information;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -16,7 +17,12 @@ class InformationController extends Controller
      */
     public function index()
     {
-        $informations = Information::orderby('id', 'desc')->get();
+        if(Auth::user()->type == 1){
+            $informations = Information::orderby('id', 'desc')->get();
+        }else{
+            $informations = Information::where('user_id', Auth::id())->orderby('id', 'desc')->get();
+        }
+
 
         return view('admin.information.list', compact('informations'));
     }
@@ -56,6 +62,7 @@ class InformationController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'age' => $request->age,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Information;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -16,8 +17,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('information')->latest()->get();
-        $informations = Information::latest()->get();
+        if (Auth::user()->type == 1) {
+            $projects = Project::with('information')->latest()->get();
+            $informations = Information::latest()->get();
+        }else {
+            $projects = Project::with('information')->where('user_id', Auth::id())->latest()->get();
+            $informations = Information::where('user_id', Auth::id())->latest()->get();
+        }
 
         return view('admin.project', compact('informations', 'projects'));
     }
@@ -42,6 +48,7 @@ class ProjectController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(),
             'information_id' => $request->information_id,
             'title' => $request->title,
             'client' => $request->client,

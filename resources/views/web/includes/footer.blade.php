@@ -4,22 +4,6 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="footer-top">
         <div class="container">
             <div class="row gy-4">
@@ -28,7 +12,7 @@
                         <img src="{{asset('web/front/img/logo.png')}}" alt="">
                         <span>Portfolio</span>
                     </a>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <p>We are team of talented designers & developers for making web application</p>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -40,11 +24,10 @@
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#home">Home</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#portfolio">Portfolio</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#team">Team</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -62,11 +45,11 @@
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>Contact Us</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        Kazipara, Mirpur-10 <br>
+                        Dhaka<br>
+                        Bangladesh <br><br>
+                        <strong>Phone:</strong> +8801878469345<br>
+                        <strong>Email:</strong> akomarfci@gmail.com<br>
                     </p>
 
                 </div>
@@ -91,7 +74,7 @@
 <script src="{{asset('web/front/vendor/glightbox/js/glightbox.min.js')}}"></script>
 <script src="{{asset('web/front/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
 <script src="{{asset('web/front/vendor/swiper/swiper-bundle.min.js')}}"></script>
-<script src="{{asset('web/front/vendor/php-email-form/validate.js')}}"></script>
+{{--<script src="{{asset('web/front/vendor/php-email-form/validate.js')}}"></script>--}}
 
 <!-- Template Main JS File -->
 <script src="{{asset('web/front/js/main.js')}}"></script>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('informations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('photo')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->integer('project')->nullable();
             $table->integer('customer')->nullable();
             $table->longText('description');
+            $table->tinyInteger('is_active')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -30,7 +30,25 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'bail|required',
+            'email' => 'bail|required|email',
+            'subject' => 'bail|required',
+            'message' => 'bail|required',
+        ]);
+
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        // Flash a message to the session
+        session()->flash('success', 'Message Send Successfully!');
+
+        // Redirect to a route
+        return redirect()->route('home.index');
     }
 
     /**

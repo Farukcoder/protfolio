@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Experience;
 use App\Models\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends Controller
 {
@@ -14,9 +15,17 @@ class ExperienceController extends Controller
     public function index()
     {
 
-        $experiences = Experience::with('information')->latest()->get();
+        if (Auth::user()->type == 1) {
+            $experiences = Experience::with('information')->latest()->get();
 
-        $informations = Information::latest()->get();
+            $informations = Information::latest()->get();
+        }else {
+
+            $experiences = Experience::with('information')->where('user_id', Auth::id())->latest()->get();
+
+            $informations = Information::where('user_id', Auth::id())->latest()->get();
+        }
+
 
         return view('admin.experience', compact('informations', 'experiences'));
     }
@@ -43,6 +52,7 @@ class ExperienceController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(),
             'information_id' => $request->information_id,
             'company_name' => $request->company_name,
             'designation' => $request->designation,

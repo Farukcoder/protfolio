@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Education;
 use App\Models\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller
 {
@@ -14,9 +15,16 @@ class EducationController extends Controller
     public function index()
     {
 
-        $educations = Education::with('information')->latest()->get();
+       if (Auth::user()->type == 1){
 
-        $informations = Information::latest()->get();
+           $educations = Education::with('information')->latest()->get();
+
+           $informations = Information::latest()->get();
+       }else {
+           $educations = Education::with('information')->where('user_id', Auth::id())->latest()->get();
+
+           $informations = Information::where('user_id', Auth::id())->latest()->get();
+       }
 
         return view('admin.education', compact('educations','informations'));
     }
@@ -43,6 +51,7 @@ class EducationController extends Controller
         ]);
 
         $data = [
+            "user_id" => Auth::id(),
             "information_id" => $request->information_id,
             "campus_name" => $request->campus_name,
             "degree" => $request->degree,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Information;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
@@ -13,9 +14,16 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $skills = Skill::with('information')->latest()->get();
+        if (Auth::user()->type == 1) {
+            $skills = Skill::with('information')->latest()->get();
 
-        $informations = Information::latest()->get();
+            $informations = Information::latest()->get();
+
+        }else {
+            $skills = Skill::with('information')->where('user_id', Auth::id())->latest()->get();
+
+            $informations = Information::where('user_id', Auth::id())->latest()->get();
+        }
 
         return view('admin.skill', compact('skills', 'informations'));
     }
@@ -40,6 +48,7 @@ class SkillController extends Controller
         ]);
 
         $data = [
+            'user_id' => Auth::id(),
             'information_id' => $request->information_id,
             'skill_name' => $request->skill_name,
             'percentage' => $request->percentage

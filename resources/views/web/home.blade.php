@@ -1,7 +1,34 @@
 @include('web.includes.header')
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
+    @if(session('success'))
+        <!-- Modal -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Success</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ session('success') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var myModal = new bootstrap.Modal(document.getElementById('successModal'), {
+                    keyboard: false
+                });
+                myModal.show();
+            });
+        </script>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center">
@@ -79,8 +106,8 @@
                     <div class="count-box">
                         <i class="bi bi-emoji-smile"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Happy Clients</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $information_count }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Total People</p>
                         </div>
                     </div>
                 </div>
@@ -89,8 +116,8 @@
                     <div class="count-box">
                         <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Projects</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $skill_count }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Skills</p>
                         </div>
                     </div>
                 </div>
@@ -99,8 +126,8 @@
                     <div class="count-box">
                         <i class="bi bi-headset" style="color: #15be56;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Hours Of Support</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $education_count }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Educations</p>
                         </div>
                     </div>
                 </div>
@@ -109,8 +136,8 @@
                     <div class="count-box">
                         <i class="bi bi-people" style="color: #bb0852;"></i>
                         <div>
-                            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                            <p>Hard Workers</p>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $project_count }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Projects</p>
                         </div>
                     </div>
                 </div>
@@ -216,28 +243,28 @@
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Address</h3>
-                                <p>A108 Adam Street,<br>New York, NY 535022</p>
+                                <p>Kazipara, Mirpur-10,<br>Dhaka, Bangladesh</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Call Us</h3>
-                                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                <p>+8801878469345 <br> +8801888888888</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email Us</h3>
-                                <p>info@example.com<br>contact@example.com</p>
+                                <p>akomarfci@gmail.com <br> mk@gmail.com</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-clock"></i>
                                 <h3>Open Hours</h3>
-                                <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                <p>Sunday - Thursday<br>9:00AM - 05:00PM</p>
                             </div>
                         </div>
                     </div>
@@ -245,23 +272,25 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" class="php-email-form">
+
+                    <form action="{{ route('contacts.store') }}" method="post" class="php-email-form">
+                        @csrf
                         <div class="row gy-4">
 
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
                             </div>
 
                             <div class="col-md-6 ">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                             </div>
 
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                             </div>
 
                             <div class="col-md-12">
-                                <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                <textarea class="form-control" name="message" id="message" rows="6" placeholder="Message" required></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
