@@ -5,7 +5,8 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
+            <a href="{{ route('home.index') }}" target="_blank" class="nav-link"><i class="fa fa-globe" aria-hidden="true"></i>
+                 Web</a>
         </li>
     </ul>
 

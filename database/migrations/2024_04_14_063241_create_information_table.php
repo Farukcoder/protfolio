@@ -30,6 +30,7 @@ return new class extends Migration
             $table->json('languages')->nullable();
             $table->integer('project')->nullable();
             $table->integer('customer')->nullable();
+            $table->string('color_code')->nullable();
             $table->longText('description');
             $table->tinyInteger('is_active')->default(0);
             $table->timestamps();

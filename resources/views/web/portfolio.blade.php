@@ -1,4 +1,5 @@
 @include('web.includes.portfolio_header')
+
 <!-- Page Content-->
 <div class="container-fluid p-0">
     <!-- About-->
@@ -6,11 +7,11 @@
         <div class="resume-section-content">
             <h1 class="mb-0">
                 {{ $allInfo->first_name }}
-                <span class="text-primary">{{ $allInfo->last_name }}</span>
+                <span class="text-primary" style="color: {{ $allInfo->color_code }}">{{ $allInfo->last_name }}</span>
             </h1>
             <div class="subheading mb-5">
                 {{ $allInfo->address }}, Mobile: {{ $allInfo->phone }},
-                <a href="mailto:{{ $allInfo->email }}">{{ $allInfo->email }}</a>
+                <a style="color: {{ $allInfo->color_code }}" href="mailto:{{ $allInfo->email }}">{{ $allInfo->email }}</a>
             </div>
             <p class="lead mb-5">{!! $allInfo->description  !!}</p>
             <div class="social-icons">

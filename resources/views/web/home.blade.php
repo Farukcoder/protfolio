@@ -1,4 +1,5 @@
 @include('web.includes.header')
+
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
     @if(session('success'))
@@ -160,7 +161,7 @@
 
             <div class="row gy-4">
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                     <div class="member">
                         <div class="member-img">
                             <img src="{{asset('web/front/img/team/team-1.jpg')}}" class="img-fluid" alt="">
@@ -179,7 +180,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="member">
                         <div class="member-img">
                             <img src="{{asset('web/front/img/team/team-2.jpg')}}" class="img-fluid" alt="">
@@ -193,12 +194,12 @@
                         <div class="member-info">
                             <h4>Nurul Amin Limon</h4>
                             <span>CSE Evening (203410007)</span>
-                            <p>Work with Deploy Server with CI CD DevOps Related Work, Backend</p>
+                            <p>Work with Backend & Frontend</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                     <div class="member">
                         <div class="member-img">
                             <img src="{{asset('web/front/img/team/team-3.jpg')}}" class="img-fluid" alt="">

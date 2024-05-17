@@ -78,6 +78,7 @@ class InformationController extends Controller
             'languages' => json_encode($request->language),
             'project' => $request->project,
             'customer' => $request->customer,
+            'color_code' => $request->color_code,
             'description' => $request->description
         ];
 
@@ -131,7 +132,6 @@ class InformationController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'photo' => 'required|image',
             'age' => 'required|integer|min:0',
             'nationality' => 'required|string|max:255',
             'address' => 'required|string',
@@ -164,6 +164,7 @@ class InformationController extends Controller
             'languages' => json_encode($request->language),
             'project' => $request->project,
             'customer' => $request->customer,
+            'color_code' => $request->color_code,
             'description' => $request->description
         ];
 

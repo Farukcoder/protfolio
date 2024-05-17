@@ -213,6 +213,15 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Color</label>
+                                    <input type="color" class="form-control @error('color_code') is-invalid @enderror" name="color_code" id="color_code" value="{{$information->color_code}}">
+                                </div>
+                                @error('color_code')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
